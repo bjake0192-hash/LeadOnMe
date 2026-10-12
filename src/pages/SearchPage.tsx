@@ -38,8 +38,7 @@ export default function SearchPage() {
 
       if (error) throw error;
       
-      const googleApiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-      const lushaApiKey = import.meta.env.VITE_LUSHA_API_KEY;
+      const googleApiKey = import.meta.env.VITE_GOOGLE_API_KEY || 'dummy';
       const voaApiKey = import.meta.env.VITE_VOA_API_KEY || 'dummy';
 
       const discoveryService = new DiscoveryService(googleApiKey, voaApiKey);
