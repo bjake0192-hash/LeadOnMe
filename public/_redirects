@@ -1,0 +1,5 @@
+/api/google-places/* https://places.googleapis.com/:splat 200
+/api/google-solar/* https://solar.googleapis.com/:splat 200
+/api/google-maps/* https://maps.googleapis.com/:splat 200
+/api/apollo/* https://api.apollo.io/:splat 200
+/* /index.html 200
