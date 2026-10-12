@@ -17,13 +17,11 @@ export interface DiscoveryParams {
 
 export class DiscoveryService {
   private googleApi: GoogleApiService;
-  private lushaApi: LushaApiService;
   private apolloApi: ApolloApiService;
   private voaApi: VoaApiService;
 
   constructor(googleApiKey: string, lushaApiKey: string, voaApiKey: string) {
     this.googleApi = new GoogleApiService(googleApiKey);
-    this.lushaApi = new LushaApiService(lushaApiKey);
     this.apolloApi = new ApolloApiService(import.meta.env.VITE_APOLLO_API_KEY || '');
     this.voaApi = new VoaApiService(voaApiKey);
   }
@@ -154,7 +152,7 @@ export class DiscoveryService {
           }
 
           if (lat && lng) {
-            let solarData;
+            let solarData: { maxArrayAreaMeters2: number; isFallback?: boolean } | null = null;
             try {
               solarData = await this.googleApi.getSolarInsights(lat, lng);
             } catch (err: any) {
@@ -184,10 +182,10 @@ export class DiscoveryService {
 
               // STAGE 4: SAVE QUALIFIED PROSPECT
               // Check for existing property using limit(1) to avoid maybeSingle() crash on existing duplicates
-              let { data: existingData, error: fetchError } = await supabase
+              let { data: existingData } = await supabase
                 .from('properties')
                 .select()
-                .eq('address', propertyAddress)
+                .eq('google_place_id', prop.id)
                 .limit(1);
                 
               let propertyData = existingData?.[0];

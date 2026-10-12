@@ -11,7 +11,7 @@ export default function SearchPage() {
     town: '',
     postcode: '',
     minRoofArea: 150,
-    maxRoofArea: '',
+    maxRoofArea: 0,
     roofMaterial: 'Metal',
     requireContacts: true
   });
@@ -117,11 +117,11 @@ export default function SearchPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">Max Roof Area (m²)</label>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     className="w-full text-sm border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring-orange-500"
-                    value={searchParams.maxRoofArea}
-                    onChange={e => setSearchParams({...searchParams, maxRoofArea: e.target.value})}
+                    value={searchParams.maxRoofArea || ''}
+                    onChange={e => setSearchParams({...searchParams, maxRoofArea: e.target.value ? parseInt(e.target.value) : 0})}
                   />
                 </div>
               </div>
