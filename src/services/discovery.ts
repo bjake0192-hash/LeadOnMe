@@ -1,6 +1,5 @@
 import { GoogleApiService } from './google';
 import { VoaApiService } from './voa';
-import { LushaApiService } from './lusha';
 import { ApolloApiService } from './apollo';
 import { supabase } from '../lib/supabase';
 
@@ -20,7 +19,7 @@ export class DiscoveryService {
   private apolloApi: ApolloApiService;
   private voaApi: VoaApiService;
 
-  constructor(googleApiKey: string, lushaApiKey: string, voaApiKey: string) {
+  constructor(googleApiKey: string, voaApiKey: string) {
     this.googleApi = new GoogleApiService(googleApiKey);
     this.apolloApi = new ApolloApiService(import.meta.env.VITE_APOLLO_API_KEY || '');
     this.voaApi = new VoaApiService(voaApiKey);

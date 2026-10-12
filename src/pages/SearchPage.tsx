@@ -42,7 +42,7 @@ export default function SearchPage() {
       const lushaApiKey = import.meta.env.VITE_LUSHA_API_KEY;
       const voaApiKey = import.meta.env.VITE_VOA_API_KEY || 'dummy';
 
-      const discoveryService = new DiscoveryService(googleApiKey, lushaApiKey, voaApiKey);
+      const discoveryService = new DiscoveryService(googleApiKey, voaApiKey);
       
       // Run discovery in the background (conceptual for frontend)
       // In a real app, this would be an Edge Function call
